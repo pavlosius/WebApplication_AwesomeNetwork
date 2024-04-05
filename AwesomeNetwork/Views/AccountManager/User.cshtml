@@ -1,0 +1,51 @@
+﻿@model AwesomeNetwork.ViewModels.Account.UserViewModel; 
+
+<div class="block-reg background-white">
+
+    <h4 class="center">@Model.User.GetFullName()</h4>
+
+    <div class="row">
+
+        <div class="main">
+            <img class="main-img" src="@Model.User.Image" />
+            <div class="center-align">
+                <form method="get" asp-controller="AccountManager" asp-action="Edit">
+                    <input class="enter_submit" type="submit" value="Редактировать" />
+                </form>
+            </div>
+        </div>
+
+
+        <div class="side">
+            <div class="lined-block">
+                <div>
+                    <label class="gray-text">Статус:</label>
+                    <label> @Model.User.Status</label>
+                </div>
+
+                <div>
+                    <label class="gray-text">Дата рождения:</label>
+                    <label> @Model.User.BirthDate.ToLongDateString()</label>
+                </div>
+
+                <div>
+                    <label class="gray-text">О себе:</label>
+                    <label> @Model.User.About</label>
+                </div>
+
+                <div>
+                    <label class="gray-text">Email:</label>
+                    <label> @Model.User.Email</label>
+                </div>
+
+            </div>
+
+            <div class="lined-block friendcontainer">
+                
+
+            </div>
+            </div>
+
+    </div>
+
+</div>

@@ -1,6 +1,6 @@
 ﻿using AwesomeNetwork.Models.Users;
 
-namespace AwesomeNetwork.ViewModels
+namespace AwesomeNetwork.ViewModels.Account
 {
     public class UserViewModel
     {

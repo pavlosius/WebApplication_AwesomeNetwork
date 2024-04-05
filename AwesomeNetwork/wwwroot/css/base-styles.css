@@ -25,6 +25,11 @@
 
     .topnav .search-container {
         float: right;
+        display: inline-block;
+    }
+
+    .topnav .logout-container {
+        float: right;
     }
 
     .topnav input[type=text] {

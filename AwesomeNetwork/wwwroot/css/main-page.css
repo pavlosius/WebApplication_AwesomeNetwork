@@ -92,6 +92,15 @@
     width: 100%;
 }
 
+.logout_submit {
+    background-color: #5181b8;
+    color: white;
+    padding: 14px 20px;
+    margin: 0 8px;
+    border: none;
+    cursor: pointer;
+}
+
 .main-img 
 {
     width: 100%;

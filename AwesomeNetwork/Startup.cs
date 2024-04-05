@@ -19,6 +19,7 @@ using AwesomeNetwork.Extentions;
 using Microsoft.Extensions.Logging;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
+using Microsoft.OpenApi.Models;
 
 namespace AwesomeNetwork
 {
@@ -62,6 +63,15 @@ namespace AwesomeNetwork
             services.AddControllersWithViews();
             services.AddRazorPages();
 
+            //builder.Services.AddSwaggerGen();
+            services.AddSwaggerGen(c => {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "HomeApi",
+                    Version = "v1"
+                });
+            });
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -70,6 +80,9 @@ namespace AwesomeNetwork
             {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
+
+                app.UseSwagger();
+                app.UseSwaggerUI();
             }
             else
             {
