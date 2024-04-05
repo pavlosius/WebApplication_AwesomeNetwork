@@ -97,5 +97,18 @@ namespace AwesomeNetwork.Controllers.Account
             return View("User", new UserViewModel(result.Result));
         }
 
+        [Route("Edit")]
+        [HttpGet]
+        public IActionResult Edit()
+        {
+            var user = User;
+
+            var result = _userManager.GetUserAsync(user);
+
+            var editmodel = _mapper.Map<UserEditViewModel>(result.Result);
+
+            return View("Edit", editmodel);
+        }
+
     }
 }
