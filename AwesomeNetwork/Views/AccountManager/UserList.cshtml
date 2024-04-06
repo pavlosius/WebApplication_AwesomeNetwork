@@ -1,0 +1,12 @@
+﻿@model AwesomeNetwork.ViewModels.Account.SearchViewModel;
+
+
+<div class="block-reg background-white">
+    @foreach (var user in @Model.UserList)
+    {
+        <div>
+            <label>@user.GetFullName()</label>
+        </div>
+    }
+
+</div>

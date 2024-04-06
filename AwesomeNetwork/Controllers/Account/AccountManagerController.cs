@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using AwesomeNetwork.Data.Repository;
 using AwesomeNetwork.Data.UoW;
+using AwesomeNetwork.Extentions;
 using AwesomeNetwork.Models.Users;
 using AwesomeNetwork.ViewModels;
 using AwesomeNetwork.ViewModels.Account;
@@ -110,5 +111,44 @@ namespace AwesomeNetwork.Controllers.Account
             return View("Edit", editmodel);
         }
 
+        [Authorize]
+        [Route("Update")]
+        [HttpPost]
+        public async Task<IActionResult> Update(UserEditViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.FindByIdAsync(model.UserId);
+
+                user.Convert(model);
+
+                var result = await _userManager.UpdateAsync(user);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("MyPage", "AccountManager");
+                }
+                else
+                {
+                    return RedirectToAction("Edit", "AccountManager");
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("", "Некорректные данные");
+                return View("Edit", model);
+            }
+        }
+
+        [Route("UserList")]
+        [HttpPost]
+        public IActionResult UserList()
+        {
+            var model = new SearchViewModel
+            {
+                UserList = _userManager.Users.ToList()
+            };
+            return View("UserList", model);
+
+        }
     }
 }
