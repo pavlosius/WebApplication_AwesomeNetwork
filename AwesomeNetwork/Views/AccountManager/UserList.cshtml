@@ -2,10 +2,19 @@
 
 
 <div class="block-reg background-white">
-    @foreach (var user in @Model.UserList)
+
+    @if (Model.UserList.Count != 0)
     {
-        <div>
-            <label>@user.GetFullName()</label>
-        </div>
+
+        @foreach (var user in @Model.UserList)
+        {
+            <div>
+                <label>@user.GetFullName()</label>
+            </div>
+        }
+    }
+    else
+    {
+        <label> Поиск не дал результатов.</label>
     }
 </div>
