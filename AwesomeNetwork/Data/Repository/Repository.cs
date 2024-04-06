@@ -8,36 +8,45 @@ namespace AwesomeNetwork.Data.Repository
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        private DbContext _db;
+        protected DbContext _db;
+
+        public DbSet<T> Set { get; private set; }
 
         public Repository(ApplicationDbContext db)
         {
             _db = db;
+            var set =_db.Set<T>();
+            set.Load();
+
+            Set = set;
         }
 
         public void Create(T item)
         {
-            throw new NotImplementedException();
+            Set.Add(item);
+            _db.SaveChanges();
         }
 
-        public void Delete(int id)
+        public void Delete(T item)
         {
-            throw new NotImplementedException();
+            Set.Remove(item);
+            _db.SaveChanges();
         }
 
         public T Get(int id)
         {
-            throw new NotImplementedException();
+            return Set.Find(id);
         }
 
         public IEnumerable<T> GetAll()
         {
-            throw new NotImplementedException();
+            return Set;
         }
 
         public void Update(T item)
         {
-            throw new NotImplementedException();
+            Set.Update(item);
+            _db.SaveChanges();
         }
     }
 }

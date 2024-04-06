@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace AwesomeNetwork.ViewModels.Account
 {
-    public class SearchViewModel
+    public class UserWithFriendExt: User
     {
-        public List<UserWithFriendExt> UserList { get; set; }
-
+        public bool IsFriendWithCurrent { get; set; }
     }
 }

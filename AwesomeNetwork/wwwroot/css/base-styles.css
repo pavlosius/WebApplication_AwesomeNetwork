@@ -1,4 +1,8 @@
 ﻿
+.righ-align {
+    float: right;
+}
+
 .topnav {
     overflow: hidden;
 }

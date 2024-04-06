@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity;
+@using AwesomeNetwork.Models.Users;
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager;
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -15,9 +20,16 @@
     <header class="border-bottom header background-white">
         <div class="container">
             <div class="topnav">
-                <a asp-area="" asp-controller="Home" asp-action="Index">SocialNetwork</a>
-                
-                <partial name="_ExitButtonPartial" />
+                @if (!SignInManager.IsSignedIn(User))
+                {
+                    <a asp-area="" asp-controller="Home" asp-action="Index">SocialNetwork</a>
+                }
+                else
+
+                {
+                    <a asp-area="" asp-controller="AccountManager" asp-action="MyPage">SocialNetwork</a>
+                }
+                <partial name="_LoginPartial.cshtml" />
                 <partial name="_SearchLayoutPartial" />
             </div>
         </div>
